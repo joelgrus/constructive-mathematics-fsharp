@@ -125,7 +125,7 @@ let AbsoluteValue (i : Integer) =
 let rec TryDivide (i1 : Integer) (i2 : Integer) =
     match i1, i2 with
     | _, Zero -> failwithf "Division by Zero is not allowed"
-    | _, Negative _ -> TryDivide (Negate i1) i2
+    | _, Negative _ -> TryDivide (Negate i1) (Negate i2)
     | _, Positive Natural.One -> Some i1
     | Zero, Positive _ -> Some Zero
     | Negative _, Positive _ -> 
@@ -219,3 +219,8 @@ let AllIntegers =
     Seq.append 
         [ Zero ]
         (Seq.collect (fun c -> [Negative c; Positive c]) Natural.AllNaturals)
+
+let AllPrimes =
+    Natural.AllNaturals
+    |> Seq.map Positive
+    |> Seq.filter IsPrime
