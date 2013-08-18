@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ConstructiveMathematics", "ConstructiveMathematics\ConstructiveMathematics.fsproj", "{E721C8C6-A083-4539-A52B-F988C8493149}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tests", "Tests\Tests.fsproj", "{7686755F-F047-41E4-836E-E22ACBA1F9EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E721C8C6-A083-4539-A52B-F988C8493149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E721C8C6-A083-4539-A52B-F988C8493149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E721C8C6-A083-4539-A52B-F988C8493149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E721C8C6-A083-4539-A52B-F988C8493149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7686755F-F047-41E4-836E-E22ACBA1F9EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7686755F-F047-41E4-836E-E22ACBA1F9EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7686755F-F047-41E4-836E-E22ACBA1F9EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7686755F-F047-41E4-836E-E22ACBA1F9EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
