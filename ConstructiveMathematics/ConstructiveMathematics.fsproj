@@ -41,7 +41,7 @@
     <Compile Include="Integers.fs" />
     <Compile Include="RationalNumbers.fs" />
     <Compile Include="GaussianIntegers.fs" />
-    <Compile Include="Reals.fs" />
+    <Compile Include="RealNumbers.fs" />
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
