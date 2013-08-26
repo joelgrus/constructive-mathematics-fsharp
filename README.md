@@ -1,5 +1,8 @@
 # Constructive Mathematics
 
+Blog post <a href = "http://joelgrus.com/2013/08/26/constructive-mathematics-in-f-and-clojure/">here</a>
+Clojure version <a href = "https://github.com/joelgrus/constructive-mathematics-clojure">here</a>
+
 Some people play video games for fun, I implement mathematics from scratch in F#.  Although this mostly represents me monkeying around, I suppose it's not a bad way to learn a few things about mathematics and/or F#.
 
 ## Comparison
