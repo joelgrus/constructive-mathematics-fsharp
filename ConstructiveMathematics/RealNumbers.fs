@@ -1,5 +1,7 @@
 ﻿module Real
 
+open System.Collections.Generic
+
 // following http://en.wikipedia.org/wiki/Constructivism_(mathematics)#Example_from_real_analysis
 // we'll define a Real numbers as a pair of functions:
 // f : Integer -> Rational
@@ -18,6 +20,20 @@ let FromRational (q : Rational.Rational) : Real = (Constantly q), AlwaysOne
 let Zero = FromRational Rational.Zero
 let One = FromRational Rational.One
 
+let memoize (iterate : Integer.Integer -> 'T -> 'T) (initialGuess : 'T) =
+    let dict = new Dictionary<Integer.Integer,'T>()
+    dict.Add(Integer.One, initialGuess)
+    let maxIndex = ref Integer.One
+    
+    let memoized (i : Integer.Integer) =
+        while Integer.LessThan !maxIndex i do            
+            let previousGuess = dict.[!maxIndex]
+            let nextGuess = iterate !maxIndex previousGuess
+            maxIndex := Integer.SuccessorOf !maxIndex
+            dict.Add(!maxIndex,nextGuess)
+        dict.[i]              
+    memoized  
+
 // per Wikipedia, this is one way to represent the number E
 let E = 
     // helper to compute partial sums of E
@@ -26,6 +42,12 @@ let E =
         |> Seq.map (Integer.Factorial >> Rational.FromInteger >> Rational.Invert)
         |> Seq.reduce Rational.Add
     partialSumTo, id
+
+let memoizedE =
+    let iterate (i : Integer.Integer) (guess : Rational.Rational) =
+        Rational.Add guess (i |> Integer.Factorial |> Rational.FromInteger |> Rational.Invert)
+    let two = Rational.Add Rational.One Rational.One
+    memoize iterate two 
 
 // there's no definitive way to determine whether real numbers are the same 
 // in a finite number of steps (hence in code)
@@ -39,8 +61,9 @@ let E =
 let TOLERANCE = 
     // we'll use 1/1024
     let ten = Integer.Add Integer.One (Integer.Multiply Integer.Three Integer.Three)
-    let oneHalf = Rational.MakeRational Integer.One Integer.Two
-    Rational.Power oneHalf ten
+    //let oneHalf = Rational.MakeRational Integer.One Integer.Two
+    //Rational.Power oneHalf ten
+    Rational.MakeRational Integer.One ten
 
 // compare two real numbers, returning equal if they're within a "tolerance" of each other
 let CompareWithTolerance (tolerance : Rational.Rational) ((f1,g1) : Real) ((f2,g2) : Real) =
@@ -79,6 +102,8 @@ let CompareWithTolerance (tolerance : Rational.Rational) ((f1,g1) : Real) ((f2,g
         Comparison.Equal
 
 let Compare = CompareWithTolerance TOLERANCE
+
+let EqualTo f g = Comparison.Equal = (Compare f g)
 
 let Negate ((f,g) : Real) = (f >> Rational.Negate), g
 
@@ -159,4 +184,16 @@ let Divide r1 r2 =
     match TryDivide r1 r2 with
     | Some(r) -> r
     | None -> failwithf "unable to divide by a number so close to zero"
+
+let Two = FromRational (Rational.Add Rational.One Rational.One)
+
+let SquareRootOfTwo : Real =
+    let rationalTwo = Rational.FromInteger Integer.Two
+    let sq x = Rational.Subtract (Rational.Multiply x x) rationalTwo
+    let sq' x = Rational.Multiply x rationalTwo
+    let iterate _ guess = Rational.Subtract guess (Rational.Divide (sq guess) (sq' guess))
+    let f = memoize iterate Rational.One
+    let g (n : Integer.Integer) = n
+    f, g
+
 

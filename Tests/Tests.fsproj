@@ -39,6 +39,7 @@
     <Compile Include="NaturalNumbers.Tests.fs" />
     <Compile Include="Integers.Tests.fs" />
     <Compile Include="RationalNumbers.Tests.fs" />
+    <Compile Include="RealNumbers.Tests.fs" />
     <None Include="packages.config" />
     <None Include="app.config" />
   </ItemGroup>

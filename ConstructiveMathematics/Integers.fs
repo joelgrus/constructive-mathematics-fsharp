@@ -126,7 +126,6 @@ let rec TryDivide (i1 : Integer) (i2 : Integer) =
     match i1, i2 with
     | _, Zero -> failwithf "Division by Zero is not allowed"
     | _, Negative _ -> TryDivide (Negate i1) (Negate i2)
-    | _, Positive Natural.One -> Some i1
     | Zero, Positive _ -> Some Zero
     | Negative _, Positive _ -> 
         match TryDivide (Negate i1) i2 with

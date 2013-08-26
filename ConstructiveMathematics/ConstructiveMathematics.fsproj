@@ -43,6 +43,7 @@
     <Compile Include="GaussianIntegers.fs" />
     <Compile Include="RealNumbers.fs" />
     <None Include="app.config" />
+    <None Include="Script1.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
